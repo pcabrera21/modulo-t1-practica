@@ -5,11 +5,11 @@ def pedir_monto():
         try:
             monto = float(input("Monto CLP($): "))
             if monto <= 0:
-                print("! Error: el onto debe ser mayor a 0.")
+                print("! Error: el monto debe ser mayor a 0.")
                 continue
             return round(monto, 2)
         except ValueError:
-            print("! Error: Ingrese un numero valido (e: 1500 ó 2500.50)")
+            print("! Error: Ingrese un numero valido (ej: 1500 ó 2500.50)")
 
 def pedir_tipo():
     while True:
@@ -118,3 +118,90 @@ def eliminar_movimiento(lista):
 
         except ValueError:
             print("! Error: Ingrese un numero valido.")
+
+
+def actualizar_movimiento(lista):
+    if not lista:
+        print("> No hay transacciones para modificar.")
+        return
+
+    mostrar_reporte(lista)
+
+    # 1. Fase de selección de ID
+    movimiento_seleccionado = None
+    while True:
+        try:
+            id_input = input("\nIngresa el ID del movimiento a modificar (0 para cancelar): ").strip()
+            id_buscado = int(id_input)
+            
+            if id_buscado == 0:
+                print("> Operacion cancelada.")
+                return
+
+            for item in lista:
+                if item["id"] == id_buscado:
+                    movimiento_seleccionado = item
+                    break
+
+            if movimiento_seleccionado is not None:
+                break
+            else:
+                print(f"! Error: No existe un movimiento con ID {id_buscado}. Intenta de nuevo.")
+
+        except ValueError:
+            print("! Error: El ID debe ser un numero entero valido.")
+
+    # 2. Fase de edición (ya tenemos el elemento garantizado)
+    print(f"\n--- MODIFICANDO REGISTRO [ID {movimiento_seleccionado['id']}] ---")
+    print(f"Actual: {movimiento_seleccionado['descripcion']} | ${movimiento_seleccionado['monto']:,.2f} | {movimiento_seleccionado['tipo']} ({movimiento_seleccionado['categoria']})")
+    print("1. Modificar descripcion")
+    print("2. Modificar monto")
+    print("3. Modificar tipo y categoria")
+    print("4. Modificar todo el registro")
+    print("5. Cancelar")
+
+    opcion_edicion = input("Selecciona que deseas cambiar (1-5): ").strip()
+
+    if opcion_edicion == "1":
+        nueva_desc = input("Nueva descripcion: ").strip()
+        while not nueva_desc:
+            print("! Error: La descripcion no puede estar vacia.")
+            nueva_desc = input("Nueva descripcion: ").strip()
+        movimiento_seleccionado["descripcion"] = nueva_desc
+        print("> Descripcion actualizada con exito.")
+
+    elif opcion_edicion == "2":
+        nuevo_monto = pedir_monto()
+        movimiento_seleccionado["monto"] = nuevo_monto
+        print(f"> Monto actualizado con exito a: ${nuevo_monto:,.2f}")
+
+    elif opcion_edicion == "3":
+        nuevo_tipo = pedir_tipo()
+        nueva_cat = pedir_categoria(nuevo_tipo)
+        movimiento_seleccionado["tipo"] = nuevo_tipo
+        movimiento_seleccionado["categoria"] = nueva_cat
+        print(f"> Tipo actualizado a {nuevo_tipo} ({nueva_cat}).")
+
+    elif opcion_edicion == "4":
+        nueva_desc = input("Nueva descripcion: ").strip()
+        while not nueva_desc:
+            print("! Error: La descripcion no puede estar vacia.")
+            nueva_desc = input("Nueva descripcion: ").strip()
+        nuevo_tipo = pedir_tipo()
+        nuevo_monto = pedir_monto()
+        nueva_cat = pedir_categoria(nuevo_tipo)
+
+        movimiento_seleccionado["descripcion"] = nueva_desc
+        movimiento_seleccionado["tipo"] = nuevo_tipo
+        movimiento_seleccionado["monto"] = nuevo_monto
+        movimiento_seleccionado["categoria"] = nueva_cat
+        print("> Registro completo actualizado con exito.")
+
+    elif opcion_edicion == "5":
+        print("> Sin modificaciones realizadas.")
+
+    else:
+        print("! Opcion no valida. Regresando al menu principal.")
+
+
+

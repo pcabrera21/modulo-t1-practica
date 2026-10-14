@@ -1,14 +1,14 @@
 [
     {
         "id": 1,
-        "descripcion": "s1",
+        "descripcion": "Sueldo 1",
         "tipo": "Ingreso",
-        "monto": 700000.0,
+        "monto": 750000.0,
         "categoria": "Sueldo/Venta"
     },
     {
         "id": 2,
-        "descripcion": "s2",
+        "descripcion": "Sueldo 2",
         "tipo": "Ingreso",
         "monto": 900000.0,
         "categoria": "Sueldo/Venta"
@@ -22,9 +22,9 @@
     },
     {
         "id": 4,
-        "descripcion": "pasaje",
+        "descripcion": "Pasaje cor-con-cor",
         "tipo": "Gasto",
-        "monto": 2000.0,
+        "monto": 60000.0,
         "categoria": "Transporte"
     },
     {
