@@ -1,0 +1,51 @@
+[
+    {
+        "id": 1,
+        "descripcion": "s1",
+        "tipo": "Ingreso",
+        "monto": 700000.0,
+        "categoria": "Sueldo/Venta"
+    },
+    {
+        "id": 2,
+        "descripcion": "s2",
+        "tipo": "Ingreso",
+        "monto": 900000.0,
+        "categoria": "Sueldo/Venta"
+    },
+    {
+        "id": 3,
+        "descripcion": "s3",
+        "tipo": "Ingreso",
+        "monto": 150000.0,
+        "categoria": "Sueldo/Venta"
+    },
+    {
+        "id": 4,
+        "descripcion": "pasaje",
+        "tipo": "Gasto",
+        "monto": 2000.0,
+        "categoria": "Transporte"
+    },
+    {
+        "id": 5,
+        "descripcion": "sushi",
+        "tipo": "Gasto",
+        "monto": 3000.0,
+        "categoria": "Alimentacion"
+    },
+    {
+        "id": 6,
+        "descripcion": "luz",
+        "tipo": "Gasto",
+        "monto": 40000.0,
+        "categoria": "Servicios"
+    },
+    {
+        "id": 7,
+        "descripcion": "agua",
+        "tipo": "Gasto",
+        "monto": 20000.0,
+        "categoria": "Servicios"
+    }
+]
